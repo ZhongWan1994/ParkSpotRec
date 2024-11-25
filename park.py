@@ -82,10 +82,6 @@ class ParkImgProcessor(object):
             p2 = [p1[0] + w, p1[1]]
             p4 = [p3[0] - w, p3[1]]
 
-            # rec = np.array([p1,p2,p3,p4])
-            # cv2.polylines(img, rec.reshape((-1, 1, 2)), True, (0, 255, 0), 2,3)
-            # cv2.line(img, p1, p2, (0, 255, 0), 1)
-
             p1_b, p2_b = p1.copy(), p2.copy()
             p1_a, p2_a = p1_b.copy(), p2_b.copy()
             for j in range(spot_num):
@@ -145,10 +141,3 @@ class ParkImgProcessor(object):
         cv2.destroyAllWindows()
         cap.release()
 
-if __name__ == '__main__':
-    conf = configparser.ConfigParser()
-    processor = ParkImgProcessor()
-    conf.read("config.ini")
-    video_name = conf.get("data", "video")
-    class_dictionary = {"0": "empty", "1": "occupied"}
-    processor.predict_on_video('/home/wz/PycharmProjects/park/parking_video.mp4', class_dictionary, conf)
